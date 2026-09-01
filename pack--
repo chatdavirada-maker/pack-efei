@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pack de Efeitos Profissionais</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #08000d;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    .hero {
+      padding: 30px 0 80px;
+      text-align: center;
+      background:
+        radial-gradient(circle at top, rgba(120, 0, 170, 0.20), transparent 35%),
+        #08000d;
+    }
+
+    .top-alert {
+      display: inline-block;
+      background: #a80707;
+      border: 1px solid #ff4949;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-weight: 900;
+      font-size: 18px;
+      margin-bottom: 26px;
+    }
+
+    h1 {
+      max-width: 1050px;
+      margin: auto;
+      font-size: clamp(42px, 6vw, 78px);
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: -2px;
+    }
+
+    .subheadline {
+      max-width: 850px;
+      margin: 28px auto 30px;
+      font-size: 20px;
+      color: #e3dbe8;
+    }
+
+    .compare-area {
+      width: min(560px, 100%);
+      margin: 35px auto;
+      position: relative;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.08fr;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .compare-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #1c1320;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .compare-card img {
+      width: 100%;
+      aspect-ratio: 9/12;
+      object-fit: cover;
+      display: block;
+    }
+
+    .tag {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-weight: 900;
+      font-size: 13px;
+      z-index: 2;
+      white-space: nowrap;
+    }
+
+    .tag.bad {
+      background: #7d111b;
+      color: #ffb8bc;
+    }
+
+    .tag.good {
+      background: #087a5c;
+      color: #c1ffea;
+    }
+
+    .play-button {
+      position: absolute;
+      width: 110px;
+      height: 110px;
+      background: rgba(190, 0, 0, 0.94);
+      border-radius: 50%;
+      left: 50%;
+      top: 53%;
+      transform: translate(-50%, -50%);
+      display: grid;
+      place-items: center;
+      z-index: 5;
+      box-shadow: 0 10px 35px rgba(255,0,0,0.35);
+    }
+
+    .play-button::before {
+      content: "";
+      border-top: 22px solid transparent;
+      border-bottom: 22px solid transparent;
+      border-left: 34px solid white;
+      margin-left: 8px;
+    }
+
+    .old-price {
+      font-size: 44px;
+      font-weight: 900;
+      color: #df1f1f;
+      text-decoration: line-through;
+      margin-top: 25px;
+    }
+
+    .only {
+      font-size: 23px;
+      margin-top: 3px;
+    }
+
+    .price {
+      color: #18e296;
+      font-size: 86px;
+      font-weight: 900;
+      line-height: 1;
+      margin-top: 8px;
+    }
+
+    .cta {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 18px 32px;
+      min-width: min(500px, 100%);
+      background: linear-gradient(180deg, #20e99c, #06c97d);
+      color: #04120c;
+      font-weight: 900;
+      font-size: 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 12px 35px rgba(22, 225, 143, 0.25);
+    }
+
+    .pack-section {
+      padding: 90px 0;
+      background: #15001f;
+      border-top: 2px solid rgba(150, 50, 255, 0.5);
+      border-bottom: 2px solid rgba(0, 255, 150, 0.45);
+    }
+
+    .pack-box {
+      width: min(860px, 100%);
+      margin: auto;
+      background: linear-gradient(180deg, #2a0e3d, #1a0828);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 45px;
+      border-radius: 8px;
+    }
+
+    .pack-box h2 {
+      text-align: center;
+      font-size: 38px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .small-red {
+      display: table;
+      margin: auto;
+      background: #a90c0c;
+      border: 1px solid #ff4949;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .pack-list {
+      list-style: none;
+    }
+
+    .pack-list li {
+      position: relative;
+      padding: 15px 0 15px 35px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .pack-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 15px;
+      width: 22px;
+      height: 22px;
+      border-radius: 3px;
+      display: grid;
+      place-items: center;
+      background: #19e493;
+      color: #062016;
+      font-weight: 900;
+    }
+
+    .benefits {
+      padding: 90px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 50px;
+      line-height: 1.15;
+      margin-bottom: 15px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 40px;
+      color: #c5bbc9;
+      font-size: 18px;
+    }
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .benefit-card {
+      background: linear-gradient(160deg, #170b20, #0c0611);
+      border: 1px solid rgba(255,255,255,0.10);
+      padding: 28px;
+      border-radius: 10px;
+    }
+
+    .benefit-card h3 {
+      font-size: 21px;
+      margin: 12px 0 8px;
+    }
+
+    .benefit-card p {
+      color: #bdb4c2;
+    }
+
+    .offer-section {
+      background: #08000d;
+      padding-bottom: 100px;
+    }
+
+    .offer-title-band {
+      background: #9e0d0d;
+      padding: 45px 20px;
+      text-align: center;
+    }
+
+    .offer-title-band h2 {
+      font-size: 46px;
+    }
+
+    .offer-card {
+      width: min(620px, 92%);
+      margin: 50px auto 0;
+      background: linear-gradient(160deg, #330d4d, #180522);
+      padding: 38px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stars {
+      text-align: center;
+      color: #ffd633;
+      font-size: 22px;
+      letter-spacing: 3px;
+    }
+
+    .offer-name {
+      margin: 18px 0;
+      text-align: center;
+      padding: 10px;
+      background: #1fe399;
+      color: #04130c;
+      font-size: 30px;
+      font-weight: 900;
+      border-radius: 6px;
+    }
+
+    .offer-price {
+      text-align: center;
+      font-size: 82px;
+      font-weight: 900;
+      color: #18e296;
+      line-height: 1;
+    }
+
+    .offer-list {
+      list-style: none;
+      margin: 25px 0;
+    }
+
+    .offer-list li {
+      position: relative;
+      padding: 14px 0 14px 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      font-weight: 700;
+    }
+
+    .offer-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 14px;
+      background: #19e493;
+      color: #052014;
+      width: 20px;
+      height: 20px;
+      display: grid;
+      place-items: center;
+      border-radius: 3px;
+      font-weight: 900;
+    }
+
+    .faq-section {
+      padding: 90px 0;
+    }
+
+    .faq {
+      width: min(820px, 100%);
+      margin: auto;
+    }
+
+    details {
+      background: #120719;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 12px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    details p {
+      margin-top: 12px;
+      color: #c1b8c5;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+      padding: 35px 0;
+      color: #7c7380;
+      font-size: 13px;
+    }
+
+    @media (max-width: 800px) {
+      .benefit-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 46px;
+      }
+
+      .section-title {
+        font-size: 38px;
+      }
+
+      .pack-box {
+        padding: 30px 22px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .compare-grid {
+        gap: 8px;
+      }
+
+      .play-button {
+        width: 82px;
+        height: 82px;
+      }
+
+      .play-button::before {
+        border-top-width: 17px;
+        border-bottom-width: 17px;
+        border-left-width: 27px;
+      }
+
+      .price,
+      .offer-price {
+        font-size: 64px;
+      }
+
+      .old-price {
+        font-size: 34px;
+      }
+
+      .cta {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="container">
+
+      <div class="top-alert">
+        PARE DE FAZER VÍDEOS COM CARA DE AMADOR:
+      </div>
+
+      <h1>
+        EDITE MAIS RÁPIDO E DEIXE SEUS VÍDEOS MUITO MAIS PROFISSIONAIS
+      </h1>
+
+      <p class="subheadline">
+        Pare de perder tempo procurando efeitos espalhados pela internet.
+        Tenha um pack organizado com efeitos visuais prontos para usar e deixe
+        suas edições muito mais impactantes. <strong>APENAS R$ 14,99.</strong>
+      </p>
+
+      <div class="compare-area">
+
+        <div class="compare-grid">
+
+          <div class="compare-card">
+            <div class="tag bad">✕ SEM O PACK</div>
+            <img src="sem-pack.jpg" alt="Exemplo sem o pack">
+          </div>
+
+          <div class="compare-card">
+            <div class="tag good">✓ COM O PACK</div>
+            <img src="com-pack.jpg" alt="Exemplo com o pack">
+          </div>
+
+        </div>
+
+        <div class="play-button"></div>
+
+      </div>
+
+      <div class="old-price">
+        DE R$ 97,00
+      </div>
+
+      <div class="only">
+        POR APENAS
+      </div>
+
+      <div class="price">
+        R$ 14,99
+      </div>
+
+      <a href="#oferta" class="cta">
+        QUERO ACESSAR O PACK AGORA
+      </a>
+
+    </div>
+  </section>
+
+
+  <section class="pack-section">
+
+    <div class="container">
+
+      <div class="pack-box">
+
+        <h2>
+          Receba um Pack Completo de Efeitos Selecionados e Organizados
+        </h2>
+
+        <div class="small-red">
+          CONTEÚDO DO PACK
+        </div>
+
+        <ul class="pack-list">
+          <li>Overlays cinematográficos</li>
+          <li>Efeitos de fogo</li>
+          <li>Explosões</li>
+          <li>Fumaça e névoa</li>
+          <li>Partículas e faíscas</li>
+          <li>Glitches e distorções</li>
+          <li>Luzes e flashes</li>
+          <li>Lens flares</li>
+          <li>Elementos gráficos</li>
+          <li>Transições</li>
+          <li>E muito mais...</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="benefits">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Pare de perder horas procurando efeitos
+      </h2>
+
+      <p class="section-subtitle">
+        Tenha seus recursos reunidos em um só lugar e encontre rapidamente
+        o efeito certo para cada cena.
+      </p>
+
+      <div class="benefit-grid">
+
+        <div class="benefit-card">
+          <div>⚡</div>
+          <h3>Edite mais rápido</h3>
+          <p>
+            Economize tempo procurando arquivos e mantenha o foco na criação.
+          </p>
+        </div>
+
+        <div class="benefit-card">
+          <div>🎬</div>
+          <h3>Mais impacto visual</h3>
+          <p>
+            Transforme cenas simples em vídeos muito mais chamativos.
+          </p>
+        </div>
+
+        <div class="benefit-card">
+          <div>📁</div>
+          <h3>Tudo organizado</h3>
+          <p>
+            Encontre rapidamente o efeito que precisa para cada edição.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="offer-section" id="oferta">
+
+    <div class="offer-title-band">
+      <h2>
+        Garanta seu acesso ao Pack
+      </h2>
+    </div>
+
+    <div class="offer-card">
+
+      <div class="stars">
+        ★★★★★
+      </div>
+
+      <div class="offer-name">
+        PACK DE EFEITOS
+      </div>
+
+      <div class="offer-price">
+        R$ 14,99
+      </div>
+
+      <ul class="offer-list">
+        <li>Pack completo de efeitos</li>
+        <li>Arquivos organizados</li>
+        <li>Pagamento único</li>
+        <li>Acesso digital</li>
+        <li>Entrega após confirmação do pagamento</li>
+      </ul>
+
+      <a
+        href="https://SEU-LINK-DE-CHECKOUT-AQUI.com"
+        class="cta"
+        target="_blank"
+      >
+        QUERO COMPRAR AGORA
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <section class="faq-section">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Perguntas frequentes
+      </h2>
+
+      <div class="faq">
+
+        <details>
+          <summary>Como recebo o pack?</summary>
+          <p>
+            Após a confirmação do pagamento, você receberá as instruções
+            para acessar os arquivos digitais.
+          </p>
+        </details>
+
+        <details>
+          <summary>Funciona no celular?</summary>
+          <p>
+            Isso depende dos formatos dos arquivos e do aplicativo de edição utilizado.
+          </p>
+        </details>
+
+        <details>
+          <summary>Funciona no computador?</summary>
+          <p>
+            Os arquivos compatíveis poderão ser utilizados em programas de edição
+            que aceitem seus respectivos formatos.
+          </p>
+        </details>
+
+        <details>
+          <summary>É assinatura?</summary>
+          <p>
+            Não. O valor de R$ 14,99 corresponde a um pagamento único.
+          </p>
+        </details>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <footer>
+    © 2026 • Pack de Efeitos • Todos os direitos reservados
+  </footer>
+
+</body>
+</html>
