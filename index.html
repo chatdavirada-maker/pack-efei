@@ -436,7 +436,41 @@
         width: 100%;
         min-width: 0;
       }
-    }
+    .video-area {
+  width: min(360px, 92%);
+  margin: 42px auto 34px;
+  padding: 10px;
+  border-radius: 28px;
+  background:
+    linear-gradient(#09000f, #09000f) padding-box,
+    linear-gradient(135deg, #7b2cff, #ff1744, #18e296) border-box;
+  border: 2px solid transparent;
+  box-shadow:
+    0 0 35px rgba(123, 44, 255, 0.30),
+    0 20px 70px rgba(0, 0, 0, 0.55);
+  position: relative;
+}
+
+.video-area::before {
+  content: "";
+  position: absolute;
+  inset: -25px;
+  background: radial-gradient(
+    circle,
+    rgba(123, 44, 255, 0.20),
+    transparent 68%
+  );
+  filter: blur(18px);
+  z-index: -1;
+}
+
+.video-vendas {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #000;
+  border-radius: 18px;
+}
   </style>
 </head>
 
@@ -459,25 +493,12 @@
         suas edições muito mais impactantes. <strong>APENAS R$ 14,99.</strong>
       </p>
 
-      <div class="compare-area">
-
-        <div class="compare-grid">
-
-          <div class="compare-card">
-            <div class="tag bad">✕ SEM O PACK</div>
-            <img src="sem-pack.jpg" alt="Exemplo sem o pack">
-          </div>
-
-          <div class="compare-card">
-            <div class="tag good">✓ COM O PACK</div>
-            <img src="com-pack.jpg" alt="Exemplo com o pack">
-          </div>
-
-        </div>
-
-        <div class="play-button"></div>
-
-      </div>
+  <div class="video-area">
+  <video class="video-vendas" controls playsinline preload="metadata">
+    <source src="0901.mp4" type="video/mp4">
+    Seu navegador não suporta a reprodução de vídeo.
+  </video>
+</div>
 
       <div class="old-price">
         DE R$ 97,00
